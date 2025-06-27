@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Shop | Angeles ARC Farmily</title>
+  <link rel="stylesheet" href="ShopCrayFishStyle.css" />
+</head>
+<body>
+  <div class="shop-container">
+    <h1>Shop Crayfish</h1>
+
+    <div class="cart-display">
+      <span class="cart-icon">🛒</span>
+      <span class="cart-count" id="cartCount">0 items</span>
+    </div>
+
+    <div class="product-list">
+      <!-- Product 1 -->
+      <div class="product-card">
+        <img src="https://via.placeholder.com/200x150?text=Crayling" alt="Crayling Image">
+        <div class="product-info">
+          <h2>Crayling</h2>
+          <p>Size: 1–1.5 inches</p>
+          <p>Price: <span class="price">&#8369;40</span></p>
+          <input type="number" min="0" placeholder="Qty" class="qty" data-price="40" data-name="Crayling" />
+          <button class="add-btn">Add to Cart</button>
+        </div>
+      </div>
+
+      <!-- Product 2 -->
+      <div class="product-card">
+        <img src="https://via.placeholder.com/200x150?text=Juvenile+Crayfish" alt="Juvenile Crayfish Image">
+        <div class="product-info">
+          <h2>Juvenile Crayfish</h2>
+          <p>Size: 2.5–3 inches</p>
+          <p>Price: <span class="price">&#8369;100</span></p>
+          <input type="number" min="0" placeholder="Qty" class="qty" data-price="100" data-name="Juvenile Crayfish" />
+          <button class="add-btn">Add to Cart</button>
+        </div>
+      </div>
+
+      <!-- Product 3 -->
+      <div class="product-card">
+        <img src="https://via.placeholder.com/200x150?text=Large+Crayfish" alt="Large Crayfish Image">
+        <div class="product-info">
+          <h2>Large Crayfish</h2>
+          <p>Size: 3.5–4 inches</p>
+          <p>Price Range: <span class="price">&#8369;500 - &#8369;600</span></p>
+          <input type="number" min="0" placeholder="Qty" class="qty" data-price="550" data-name="Large Crayfish" />
+          <button class="add-btn">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="cart-summary" id="cartSummary">
+      <h3>🧾 Cart Summary:</h3>
+      <div id="cartItemsList">
+        <p class="cart-item">No items in cart yet.</p>
+      </div>
+      <div class="summary-buttons">
+        <button class="clear-btn" id="clearCart">Clear Cart</button>
+      </div>
+    </div>
+
+    <div class="total-section">
+      <a href="IntroCrayFish.html" class="back-btn">← Back</a>
+      <button id="calculateBtn" class="order-btn">Order Now</button>
+      <h3>Total: <span id="totalPrice">&#8369;0</span></h3>
+    </div>
+  </div>
+
+  <!-- SCRIPT -->
+  <script>
+    let cartItems = 0;
+    let cartTotal = 0;
+    const cartData = {};
+
+    const qtyInputs = document.querySelectorAll(".qty");
+    const addButtons = document.querySelectorAll(".add-btn");
+    const totalPriceSpan = document.getElementById("totalPrice");
+    const cartCountSpan = document.getElementById("cartCount");
+    const cartItemsList = document.getElementById("cartItemsList");
+    const clearCartBtn = document.getElementById("clearCart");
+
+    function updateCartDisplay() {
+      cartItemsList.innerHTML = "";
+
+      if (Object.keys(cartData).length === 0) {
+        cartItemsList.innerHTML = `<p class="cart-item">No items in cart yet.</p>`;
+      } else {
+        for (const [name, item] of Object.entries(cartData)) {
+          const div = document.createElement("div");
+          div.className = "cart-item";
+          div.innerHTML = `
+            ${item.quantity} x ${name} – ₱${(item.quantity * item.price).toLocaleString()}
+            <button class="delete-one" data-name="${name}">❌</button>
+          `;
+          cartItemsList.appendChild(div);
+        }
+
+        document.querySelectorAll(".delete-one").forEach(btn => {
+          btn.addEventListener("click", () => {
+            const name = btn.dataset.name;
+            if (cartData[name]) {
+              cartItems--;
+              cartTotal -= cartData[name].price;
+              cartData[name].quantity--;
+
+              if (cartData[name].quantity <= 0) {
+                delete cartData[name];
+              }
+
+              updateCartDisplay();
+            }
+          });
+        });
+      }
+
+      cartCountSpan.textContent = `${cartItems} item${cartItems !== 1 ? 's' : ''}`;
+      totalPriceSpan.textContent = `₱${cartTotal.toLocaleString()}`;
+    }
+
+    addButtons.forEach((btn, index) => {
+      btn.addEventListener("click", () => {
+        const input = qtyInputs[index];
+        const quantity = parseInt(input.value) || 0;
+        const price = parseFloat(input.dataset.price);
+        const name = input.dataset.name;
+
+        if (quantity > 0) {
+          if (!cartData[name]) {
+            cartData[name] = { quantity: 0, price: price };
+          }
+          cartData[name].quantity += quantity;
+          cartItems += quantity;
+          cartTotal += price * quantity;
+
+          input.value = "";
+          updateCartDisplay();
+        }
+      });
+    });
+
+    clearCartBtn.addEventListener("click", () => {
+      cartItems = 0;
+      cartTotal = 0;
+      for (let item in cartData) delete cartData[item];
+      updateCartDisplay();
+    });
+
+    updateCartDisplay();
+  </script>
+</body>
+</html>

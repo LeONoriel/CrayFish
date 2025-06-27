@@ -1,0 +1,104 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to right, #d3f8e2, #e4c1f9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.contact-container {
+  background-color: #ffffffcc;
+  padding: 30px 40px;
+  border-radius: 15px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+  max-width: 500px;
+  width: 90%;
+  text-align: center;
+  animation: fadeInUp 0.8s ease-out;
+}
+
+h1 {
+  color: #278a7c;
+  margin-bottom: 20px;
+}
+
+.contact-info p {
+  font-size: 16px;
+  margin: 8px 0;
+  color: #333;
+}
+
+.social-links {
+  margin-top: 20px;
+}
+
+.social-links h3 {
+  margin-bottom: 10px;
+  color: #278a7c;
+}
+
+.social-icon {
+  display: inline-block;
+  margin: 0 10px;
+  transition: transform 0.3s ease;
+}
+
+.social-icon img {
+  width: 32px;
+  height: 32px;
+  filter: grayscale(100%) brightness(0.8);
+  transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.social-icon:hover img {
+  filter: none;
+  transform: scale(1.2);
+}
+
+/* Animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.back-wrapper {
+  margin-top: 30px;
+}
+
+.back-btn {
+  display: inline-block;
+  background-color: #278a7c;
+  color: white;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  animation: slideInFade 0.8s ease-out;
+}
+
+.back-btn:hover {
+  background-color: #1f6a61;
+  transform: translateY(-2px) scale(1.05);
+}
+
+/* Slide in + fade animation */
+@keyframes slideInFade {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

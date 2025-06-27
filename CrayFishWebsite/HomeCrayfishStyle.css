@@ -1,0 +1,107 @@
+:root {
+  --background-image: url('https://images.unsplash.com/photo-1505159940484-eb2b9f028e2b');
+}
+
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  height: 100%;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Home Container */
+.home-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 40px;
+  background: 
+    linear-gradient(rgba(255, 255, 255, 0.6), rgba(0, 0, 0, 0.6)),
+    var(--background-image) no-repeat center center/cover;
+  color: #000000;
+  animation: fadeIn 1s ease-in;
+}
+
+/* Content Box */
+.home-content {
+  max-width: 700px;
+  width: 100%;
+  text-align: left;
+}
+
+/* Headings */
+h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  color: #2e7d32;
+}
+
+p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+/* Section Cards */
+.sections {
+  margin: 20px 0;
+}
+
+.section-card {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.section-card h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #2e7d32;
+}
+
+/* Navigation Buttons */
+.nav-buttons {
+  margin-top: 30px;
+}
+
+.nav-buttons a {
+  display: inline-block;
+  margin-right: 15px;
+  padding: 10px 20px;
+  background-color: #2e7d32;
+  color: #333;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+.nav-buttons a:hover {
+  background-color: #256128;
+  transform: scale(1.05);
+}
+
+/* Page Animation */
+.fade-out {
+  animation: fadeOut 0.6s ease forwards;
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}

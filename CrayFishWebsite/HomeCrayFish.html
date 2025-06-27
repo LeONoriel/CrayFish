@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home | Angeles ARC Farmily</title>
+  <link rel="stylesheet" href="HomeCrayfishStyle.css" />
+</head>
+<body>
+  <div class="home-container">
+    <div class="home-content">
+      <h1>Home – Angeles ARC Farmily</h1>
+      <p>Welcome to our crayfish farm! We provide fresh, high-quality crayfish directly from our ponds to your plate.</p>
+
+      <div class="sections">
+        <div class="section-card">
+          <h2>What We Offer</h2>
+          <p>Live, frozen, and cooked crayfish — carefully raised and delivered fresh to your kitchen.</p>
+        </div>
+        <div class="section-card">
+          <h2>Why Choose Us</h2>
+          <p>We value sustainability, freshness, and the satisfaction of every customer we serve.</p>
+        </div>
+      </div>
+
+      <div class="nav-buttons">
+        <a href="ShopCrayFish.html">Go to Shop</a>
+        <a href="IntroCrayFish.html">← Back </a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const links = document.querySelectorAll(".nav-buttons a");
+      links.forEach(link => {
+        link.addEventListener("click", function (e) {
+          e.preventDefault();
+          document.body.classList.add("fade-out");
+          setTimeout(() => {
+            window.location.href = this.href;
+          }, 500);
+        });
+      });
+    });
+  </script>
+</body>
+</html>
